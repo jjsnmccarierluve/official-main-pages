@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>麻将胡了 · 日常查询与延伸阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f0f1f3;
+            color: #2d2f33;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 820px;
+            width: 100%;
+        }
+
+        .hero-card {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e6e8ec;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .hero-card:hover {
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: #1c1e21;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            border-left: 4px solid #a1a9b8;
+            padding-left: 1rem;
+        }
+
+        .opening {
+            font-size: 1.05rem;
+            color: #3e4045;
+            margin-bottom: 1.2rem;
+        }
+
+        .paragraph {
+            background: #fafbfc;
+            border-radius: 18px;
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 1.6rem;
+            border: 1px solid #e7e9ed;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .paragraph p {
+            margin-bottom: 1rem;
+        }
+
+        .paragraph p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin: 1.8rem 0;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.4rem 1.2rem;
+            border: 1px solid #e2e5ea;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .feature-card h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #1f2227;
+        }
+
+        .feature-card p {
+            font-size: 0.92rem;
+            color: #51555c;
+        }
+
+        .scene-block {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.6rem 1.8rem;
+            margin: 1.8rem 0;
+            border: 1px solid #e2e5ea;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+        }
+
+        .scene-block h2 {
+            font-weight: 500;
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            color: #2a2c31;
+            border-bottom: 1px solid #eef0f4;
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.6rem 1.8rem;
+            margin: 1.8rem 0;
+            border: 1px solid #e2e5ea;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+        }
+
+        .faq-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #e9ebf0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item strong {
+            font-weight: 500;
+            color: #1f2227;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item span {
+            color: #51555c;
+            font-size: 0.95rem;
+        }
+
+        .link-sentence {
+            background: #f7f8fa;
+            border-radius: 14px;
+            padding: 1rem 1.6rem;
+            margin: 1.6rem 0 0.5rem;
+            border: 1px solid #e4e7ec;
+            font-size: 0.98rem;
+            color: #2e3035;
+        }
+
+        a {
+            color: #3b5b8c;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+            font-weight: 450;
+        }
+
+        a:hover {
+            border-bottom-color: #3b5b8c;
+            color: #1d3a61;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #7f828b;
+            border-top: 1px solid #e0e3e9;
+            padding-top: 1.8rem;
+        }
+
+        @media (max-width: 540px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            .hero-card {
+                padding: 1.8rem 1.2rem;
+            }
+            .paragraph {
+                padding: 1.2rem 1rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.6rem;
+                padding-left: 0.75rem;
+            }
+        }
+
+        /* 细微装饰 */
+        .quiet-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #d6dae2, transparent);
+            margin: 1.2rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 开场 hero 区 -->
+    <div class="hero-card">
+        <h1>关于规则、术语与习惯</h1>
+        <div class="opening">
+            有时只是想确认一个役种，有时想看看不同玩法的计番方式，或者单纯想翻翻那些耳熟却又记不全的麻将用语。
+        </div>
+        <div class="quiet-divider"></div>
+        <p style="color: #484b52; font-size: 0.96rem;">
+            这种时候，手边有一个清晰、有条理的参考会方便很多——不用翻找散落的笔记，也不用在零散的页面间来回切换。
+        </p>
+    </div>
+
+    <!-- 承接段落 -->
+    <div class="paragraph">
+        <p>
+            麻将的乐趣，有一部分来自对牌型的理解和对局中的判断。而理解往往始于查询：某个复合役种怎么组合？副露之后是否还有机会？不同地区的规则对「流局满贯」的认定一样吗？这些问题在牌桌上偶尔会冒出来，下来翻一翻、对一对，心里就更踏实一些。
+        </p>
+        <p>
+            除了规则对照，很多打牌的人也喜欢看一些记录和讲解。从经典牌谱到现代竞技的演变，从地方玩法到通用立直规则，这些内容并不需要一次性记牢，但当作延伸阅读来翻看，本身也是一种消遣和积累。
+        </p>
+    </div>
+
+    <!-- 特点列表 卡片网格 -->
+    <div class="card-grid">
+        <div class="feature-card">
+            <h3>役种速查</h3>
+            <p>常见役种、复合役种、食上下位、流局相关，以条目形式列出，方便对照与记忆。</p>
+        </div>
+        <div class="feature-card">
+            <h3>计番与符数</h3>
+            <p>包括基本符计算、翻数叠加、以及不同规则下的满贯、役满划分方式。</p>
+        </div>
+        <div class="feature-card">
+            <h3>术语集</h3>
+            <p>从「立直」「一发」「宝牌」到「九种九牌」「四杠子」等，收录常用和冷门用语。</p>
+        </div>
+        <div class="feature-card">
+            <h3>阅读与整理</h3>
+            <p>包含牌谱注解、规则沿革、地域差异说明，适合想深入了解的爱好者。</p>
+        </div>
+    </div>
+
+    <!-- 场景段落 -->
+    <div class="scene-block">
+        <h2>日常使用场景</h2>
+        <p>
+            比如周末约了朋友打半庄，规则细节有些记不清——提前翻一翻役种说明，对局时心里更有数。又或者自己看视频、读牌谱时遇到不熟悉的术语，随手查一下就能接上思路。再比如单纯想系统过一遍计番逻辑，把零碎的知识点串起来。
+        </p>
+        <p style="margin-top: 0.8rem;">
+            这些场景的共同点是：需要一份内容准确、结构清楚且阅读体验平和的参考资料。没有弹窗干扰，也没有浮夸的引导，安安静静地作为知识角落存在。
+        </p>
+    </div>
+
+    <!-- 温和提示  含链接的自然嵌入 -->
+    <div class="link-sentence">
+        &#128214; 如果希望更全面地浏览规则、役种和延伸内容，可以收藏 
+        <a href="https://official-main-mahjong.com">麻将胡了</a> 
+        作为日常查阅的站点之一。页面保持更新，内容来源也经过整理，比较适合对照和拓展阅读。
+    </div>
+
+    <!-- FAQ 摘要 温和形式 -->
+    <div class="faq-mini">
+        <h2 style="font-size: 1.1rem; font-weight: 500; margin-bottom: 0.8rem;">常见疑问摘要</h2>
+        <div class="faq-item">
+            <strong>关于役种确认</strong>
+            <span>不同规则下，部分役种名称和成立条件略有出入，查阅时建议留意规则分类说明。</span>
+        </div>
+        <div class="faq-item">
+            <strong>计番与符数换算</strong>
+            <span>满贯、跳满、倍满的界限在各地玩法中有细微差别，可对照页面中的对照表查看。</span>
+        </div>
+        <div class="faq-item">
+            <strong>延伸阅读方向</strong>
+            <span>除了基本规则，页面也收录了一些发展脉络和趣味记录，适合作为背景了解。</span>
+        </div>
+        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: #62666f;">
+            （以上仅为摘要，详细内容可在对应板块中找到。）
+        </div>
+    </div>
+
+    <!-- 结尾 -->
+    <div class="paragraph" style="background: #f8f9fb;">
+        <p>
+            麻将的魅力，在于每一局都充满变数，而理解这些变数背后的逻辑，会让打牌的过程更有滋味。无论是新手还是老手，保持一点慢慢查、慢慢看的心情，其实挺好的。
+        </p>
+        <p style="margin-top: 0.5rem; color: #4f535c;">
+            希望这个页面能成为你案头或手机里一个安静的参考角落。
+        </p>
+    </div>
+
+    <div class="footer-note">
+        </div>
+
+</div>
+</body>
+</html>
